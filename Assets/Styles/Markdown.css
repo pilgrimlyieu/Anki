@@ -1,0 +1,110 @@
+#front, #back, #extra, #extra1, #extra2 {
+    visibility: hidden;
+    line-height: 1.2;
+    margin-top: -0.8em;
+    margin-bottom: -0.8em;
+}
+
+html body hr {
+    margin: -2px 2px 0px 0px;
+    width: 100%;
+}
+
+html body table {
+    margin: 15px 0 15px 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    overflow: auto;
+    word-break: normal;
+    background-color: hsl(220, 13%, 18%);
+    width: 100%;
+}
+
+html body table th {
+    font-weight: bold;
+    color: hsl(0, 0%, 100%);
+}
+
+html body table td,
+html body table th {
+    padding: 6px 13px;
+    border: 1px solid hsl(220, 13%, 34%);
+}
+
+html body hr {
+    background-color: hsl(220, 13%, 34%);
+    height: 3px;
+    border: 0 none;
+}
+
+html body code {
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: .85em !important;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(220, 13%, 26%);
+    padding: 0.2em 0;
+    border-radius: 3px;
+}
+
+html body code::before,
+html body code::after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+}
+
+html body kbd {
+    color: hsl(0, 0%, 100%);
+    padding: 2px 4px;
+    background-color: hsl(220, 13%, 26%);
+    border: 1px solid hsl(220, 13%, 34%);
+    border-bottom: 2px solid hsl(220, 13%, 28%);
+    border-radius: 3px;
+}
+
+html body pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: .85em !important;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+}
+
+html body pre {
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    overflow: auto;
+    font-size: 1em !important;
+    line-height: 1;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    padding: 1em;
+    margin: 0em 0;
+    overflow: auto;
+    tab-size: 4;
+    hyphens: none;
+    color: #F8F8F2;
+    background-color: #323232 !important;
+    border: hsl(220, 13%, 34%);
+    border-radius: 3px direction: ltr;
+}
+
+html body blockquote {
+    margin: 16px 0;
+    font-size: inherit;
+    padding: 0 15px;
+    color: hsl(220, 14%, 55%);
+    background-color: hsl(220, 13%, 26%);
+    border-left: 4px solid hsl(220, 13%, 34%)
+}
+
+html body blockquote>:first-child {
+    margin-top: 0
+}
+
+html body blockquote>:last-child {
+    margin-bottom: 0
+}
