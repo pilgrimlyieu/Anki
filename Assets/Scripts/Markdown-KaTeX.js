@@ -166,12 +166,12 @@ function replaceInString(str) {
     str = str.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
     str = str.replace(/<div[^>]*>/gi, "\n");
     str = str.replace(/<[\/]?span[^>]*>/gi, "")
-    str.replace(/<\/div[^>]*>/g, "\n");
+    // str = str.replace(/<\/div[^>]*>/g, "\n");
+    str = str.replace(/&nbsp;/gi, " ");
     return replaceHTMLElementsInString(str);
 }
 
 function replaceHTMLElementsInString(str) {
-    // str = str.replace(/&nbsp;/gi, " ");
     str = str.replace(/&tab;/gi, "  ");
     str = str.replace(/&gt;/gi, ">");
     str = str.replace(/&lt;/gi, "<");
