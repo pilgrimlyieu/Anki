@@ -5,4 +5,4 @@ function clear(word) {
         return word
 }
 
-document.getElementById('hint').innerHTML = clear(word)
+document.getElementById('hint').innerHTML = clear(word).replace(/\?/g, '')

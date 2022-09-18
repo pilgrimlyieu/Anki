@@ -54,13 +54,13 @@ if (word.slice(1, 2) == ':') {
     }
     else if (flag == '-') {
         all_same = 0
-        let params = word.slice(2).split(' ')
+        let params = word.replace(/\?/g, default_underline.repeat(2)).slice(2).split(' ')
         for (const order in params)
             result += underline_replace(params[order].length) + ' '
     }
     else if (flag == '_') {
         all_same = 1
-        let params = word.slice(2).split(' ')
+        let params = word.replace(/\?/, default_underline).slice(2).split(' ')
         for (const order in params)
             result += underline_replace(params[order].length) + ' '
     }
@@ -101,4 +101,4 @@ if (over) {
     }
 }
 
-document.getElementById('hint').innerHTML = result
+document.getElementById('hint').innerHTML = result.replace(/\?/g, default_underline)

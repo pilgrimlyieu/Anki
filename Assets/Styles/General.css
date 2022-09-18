@@ -132,8 +132,8 @@ u {
 mark {
     text-decoration: none;
     font-weight: bold;
-    color: rgb(149, 2, 47);
-    background: linear-gradient(rgb(255, 185, 0), rgb(255, 185, 0)) 0 75% / 100% 12px no-repeat;
+    color: rgb(255, 185, 0);
+    background: linear-gradient(rgb(149, 2, 47), rgb(149, 2, 47)) 0 75% / 100% 12px no-repeat;
 }
 
 b {
