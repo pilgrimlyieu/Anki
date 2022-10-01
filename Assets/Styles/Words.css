@@ -5,10 +5,10 @@
     text-align: center;
     text-decoration: none;
     margin-right: 10px;
-    margin-top: -20px;
+    margin-top: -12px;
     background-color: var(--button-bg-color);
-    height: 48px;
-    width: 48px;
+    height: 36px;
+    width: 28px;
     border: none;
     border-radius: 2px;
     float: right;

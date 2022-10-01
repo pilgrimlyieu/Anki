@@ -1,6 +1,7 @@
 function clear(word) {
-    if (word.slice(1, 2) == ':')
-        return word.slice(2).replace(/_/g, '')
+    let flag = word.charAt(0)
+    if (flag == ':' || flag == '-')
+        return word.slice(1).replace(/_/g, '')
     else
         return word
 }

@@ -1,14 +1,14 @@
 var getResources = [
-    getCSS("_katex.css", "https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"),
-    // getCSS("_highlight.css", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark-reasonable.min.css"),
-    // getScript("_highlight.js", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"),
-    getScript("_katex.min.js", "https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"),
-    getScript("_auto-render.js", "https://cdn.jsdelivr.net/gh/Jwrede/Anki-KaTeX-Markdown/auto-render-cdn.js"),
+    getCSS("_katex.css", "https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"),
+    getScript("_katex.js", "https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js"),
     getScript("_markdown-it.min.js", "https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"),
     getScript("_markdown-it-mark.js", "https://github.com/markdown-it/markdown-it-mark/blob/master/dist/markdown-it-mark.js"),
+    getScript("_auto-render.js", "https://cdn.jsdelivr.net/gh/Jwrede/Anki-KaTeX-Markdown/auto-render-cdn.js"),
+    // getCSS("_highlight.css", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark-reasonable.min.css"),
+    // getScript("_highlight.js", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"),
 ];
 
-Promise.all(getResources).then(() => getScript("_mhchem.js", "https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js")).then(render).catch(show);
+Promise.all(getResources).then(() => getScript("_mhchem.js", "https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/mhchem.min.js")).then(render).catch(show);
 
 function getScript(path, altURL) {
     return new Promise((resolve, reject) => {
@@ -166,7 +166,7 @@ function replaceInString(str) {
     str = str.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
     str = str.replace(/<div[^>]*>/gi, "\n");
     str = str.replace(/<[\/]?span[^>]*>/gi, "")
-    // str = str.replace(/<\/div[^>]*>/g, "\n");
+    str = str.replace(/<\/div[^>]*>/gi, "\n");
     str = str.replace(/&nbsp;/gi, " ");
     return replaceHTMLElementsInString(str);
 }
