@@ -1,10 +1,10 @@
-var cloze_alls = ['?', 'in', 'of', 'from', 'at', 'on', 'through', 'via', 'before', 'after', 'until', 'to', 'down', 'up', 'off', 'away', 'into', 'onto', 'upon', 'out', 'with', 'without', 'within', 'by', 'for', 'since', 'toward', 'towards', 'forward', 'forwards', 'above', 'below', 'beyond', 'again', 'about', 'under', 'beneath', 'during', 'around', 'than', 'over', 'beside', 'behind', 'as', 'and', 'or', 'though', 'but', 'not', 'nor', 'either', 'neither', 'yet', 'both', 'so', 'such', 'that', 'which', 'when', 'how', 'what', 'a', 'an', 'the', 'this', 'that', 'if', 'no', 'most', 'one', 'one\'s', 'oneself', 'do', 'does', 'doing', 'did', 'done', 'be', 'is', 'are', 'was', 'were', 'been', 'many', 'much', 'can', 'can\'t', 'sb\'s', 'back', 'there', 'there\'s', 'it', 'it\'s', 'other', 'else', 'among', 'against', 'things', 'ever', 'something', 'everything', 'anything']
-var remain_alls = ['sth.', 'sb.', '...']
+var cloze_alls = ['?', 'in', 'of', 'from', 'at', 'on', 'through', 'via', 'before', 'after', 'until', 'to', 'down', 'up', 'off', 'away', 'into', 'onto', 'upon', 'out', 'with', 'without', 'within', 'by', 'for', 'since', 'toward', 'towards', 'forward', 'forwards', 'above', 'below', 'beyond', 'again', 'about', 'under', 'beneath', 'during', 'around', 'than', 'over', 'beside', 'behind', 'as', 'and', 'or', 'though', 'but', 'not', 'nor', 'either', 'neither', 'yet', 'both', 'so', 'such', 'that', 'which', 'when', 'how', 'what', 'a', 'an', 'the', 'this', 'that', 'if', 'no', 'most', 'one', 'one\'s', 'oneself', 'do', 'does', 'doing', 'did', 'done', 'be', 'is', 'are', 'was', 'were', 'been', 'many', 'much', 'can', 'can\'t', 'sb\'s', 'back', 'there', 'there\'s', 'it', 'it\'s', 'other', 'else', 'among', 'against', 'things', 'ever', 'something', 'everything', 'anything', 'i', 'me', 'my', 'we', 'us', 'our', 'you', 'your', 'he', 'him', 'his', 'she', 'her', 'they', 'them', 'their', 'whether', 'whose', 'very', 'other', 'others', 'another', 'upside']
+var remain_alls = ['sth.', 'sb.', 'sp.', '...']
 var punctuations = [',', '.', ')']
 var default_underline = '__'
 
 function underline_replace(word, first = 1) {
-    return ((first && word.length > 1) ? word.charAt(0) : '') + default_underline
+    return word ? ((first && word.length > 1) ? word.charAt(0) : '') + default_underline : ''
 }
 
 // var word = "over and over(again)".trim()
