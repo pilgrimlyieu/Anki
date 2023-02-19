@@ -165,7 +165,7 @@ function replaceInString(str) {
     str = str.replace(/<[\/]?pre[^>]*>/gi, "");
     str = str.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
     str = str.replace(/<div[^>]*>/gi, "\n");
-    str = str.replace(/<[\/]?span[^>]*>/gi, "")
+    str = str.replace(/<span class="cloze" data-cloze=".*?" data-ordinal="\d+">|<[\/]?span[^>]*>/gi, "")
     str = str.replace(/<\/div[^>]*>/gi, "\n");
     str = str.replace(/&nbsp;/gi, " ");
     return replaceHTMLElementsInString(str);

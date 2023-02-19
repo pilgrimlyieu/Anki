@@ -59,13 +59,13 @@
 }
 
 .ximg {
-    background: url(_x-day.svg);
+    background: url(_x.svg);
 }
 .yimg {
-    background: url(_y-day.svg);
+    background: url(_y.svg);
 }
 .zimg {
-    background: url(_z-day.svg);
+    background: url(_z.svg);
 }
 .ximg, .yimg, .zimg {
     background-size: 80%;
@@ -126,12 +126,12 @@
 
 u {
     text-decoration: none;
+    color: rgb(218, 247, 166);
     background: linear-gradient(rgba(74, 114, 92, 1), rgba(74, 114, 92, 1)) 0 75% / 100% 12px no-repeat;
 }
 
 mark {
     text-decoration: none;
-    font-weight: bold;
     color: rgb(255, 185, 0);
     background: linear-gradient(rgb(149, 2, 47), rgb(149, 2, 47)) 0 75% / 100% 12px no-repeat;
 }
@@ -157,7 +157,7 @@ i, em {
 }
 
 img, .chrome img {
-    max-width: 100%;
+    max-width: 98%;
     vertical-align: middle;
 }
 
