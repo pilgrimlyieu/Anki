@@ -1,63 +1,50 @@
-// Created by New Bing & Developed by PilgrimLyieu
-var hiddenWords = ['?', 'in', 'of', 'from', 'at', 'on', 'through', 'via', 'before', 'after', 'until', 'to', 'down', 'up', 'off', 'away', 'into', 'onto', 'upon', 'out', 'with', 'without', 'within', 'by', 'for', 'since', 'toward', 'towards', 'forward', 'forwards', 'above', 'below', 'beyond', 'again', 'about', 'under', 'beneath', 'during', 'around', 'than', 'over', 'beside', 'behind', 'as', 'and', 'or', 'though', 'but', 'not', 'nor', 'either', 'neither', 'yet', 'both', 'so', 'such', 'that', 'which', 'when', 'how', 'what', 'a', 'an', 'the', 'this', 'that', 'if', 'no', 'most', 'one', 'one\'s', 'oneself', 'do', 'does', 'doing', 'did', 'done', 'be', 'is', 'are', 'was', 'were', 'been', 'many', 'much', 'can', 'can\'t', 'sb.\'s', 'back', 'there', 'there\'s', 'it', 'it\'s', 'other', 'else', 'among', 'against', 'things', 'ever', 'something', 'everything', 'anything', 'i', 'me', 'my', 'we', 'us', 'our', 'you', 'your', 'he', 'him', 'his', 'she', 'her', 'they', 'them', 'their', 'whether', 'whose', 'very', 'other', 'others', 'another', 'upside', 'should', 'only', 'ahead', 'throughout']
-var preservedWords = ['sth.', 'sb.', 'sp.', '...']
-var underline = '__';
-var partword = '';
+// Created by New Bing, Maintained & Developed by PilgrimLyieu
+
+// var word = "due to sb's constant efforts".trim()
+// var words = word.split(" ")
+// var result = ""
+
+var hiddenWords = ["?", "in", "of", "from", "at", "on", "through", "via", "before", "after", "until", "to", "down", "up", "off", "away", "into", "onto", "upon", "out", "with", "without", "within", "by", "for", "since", "toward", "towards", "forward", "forwards", "above", "below", "beyond", "again", "about", "under", "beneath", "during", "around", "than", "over", "beside", "behind", "as", "and", "or", "though", "but", "not", "nor", "either", "neither", "yet", "both", "so", "such", "that", "which", "when", "how", "what", "a", "an", "the", "this", "that", "if", "no", "most", "one", "one's", "oneself", "do", "does", "doing", "did", "done", "be", "is", "are", "was", "were", "been", "many", "much", "can", "can't", "sb.'s", "sb's", "back", "there", "there's", "it", "it's", "other", "else", "among", "against", "things", "ever", "something", "everything", "anything", "i", "me", "my", "we", "us", "our", "you", "your", "he", "him", "his", "she", "her", "they", "them", "their", "whether", "whose", "very", "other", "others", "another", "upside", "should", "only", "ahead", "throughout", "once", "all", "b"]
+var preservedWords = ["sth", "sb", "sp"]
+var underline = "__";
+var partword = "";
 var instruction = word[0];
 
-if ([':', '-', '#'].includes(instruction))
+if ([":", "-", "!", "#"].includes(instruction)) {
     word = word.slice(1)
-else
+} else {
     instruction = null
+}
 
-if (instruction === '#') {
+if (instruction === "#") {
     result = underline.repeat(2);
-} else if (instruction === ':') {
-    let params = word.split('_')
+} else if (instruction === ":") {
+    let params = word.split("_")
     for (const order in params) {
         const param = params[order]
-        if (order % 2)
-            result += param ? underline : ''
-        else
+        if (order % 2) {
+            result += param ? underline : ""
+        } else {
             result += param
+        }
+    }
+} else if (instruction === "-") {
+    let params = word.split(" ")
+    for (const order in params) {
+        result += underline + " "
+    }
+} else if (instruction === "!") {
+    let params = word.split(" ")
+    for (const order in params) {
+        result += params[order][0] + underline + " "
     }
 } else {
     for (let i = 0; i < word.length; i++) {
         let char = word[i];
-        if (/[-\w.'?]/g.test(char)) {
+        if (/[-\w'?]/.test(char)) {
             partword += char;
         } else {
-            if (partword) {
-                if (instruction === '-') {
-                    if (partword.length > 1 && !(/^\d/.test(partword))) {
-                        result += partword[0] + underline;
-                    } else {
-                        result += partword;
-                    }
-                } else {
-                    if (hiddenWords.includes(partword.toLowerCase())) {
-                        result += underline;
-                    } else if (preservedWords.includes(partword)) {
-                        result += partword;
-                    } else if (partword.length > 1 && !(/^\d/.test(partword))) {
-                        result += partword[0] + underline;
-                    } else {
-                        result += partword;
-                    }
-                }
-                partword = '';
-            }
-            result += char;
-        }
-    }
-    if (partword) {
-        if (instruction === '-') {
-            if (partword.length > 1 && !(/^\d/.test(partword))) {
-                result += partword[0] + underline;
-            } else {
-                result += partword;
-            }
-        } else {
+            // if (partword) {
             if (hiddenWords.includes(partword.toLowerCase())) {
                 result += underline;
             } else if (preservedWords.includes(partword)) {
@@ -67,11 +54,26 @@ if (instruction === '#') {
             } else {
                 result += partword;
             }
+            partword = "";
+            // }
+            result += char;
+        }
+    }
+    if (partword) {
+        if (hiddenWords.includes(partword.toLowerCase())) {
+            result += underline;
+        } else if (preservedWords.includes(partword)) {
+            result += partword;
+        } else if (partword.length > 1 && !(/^\d/.test(partword))) {
+            result += partword[0] + underline;
+        } else {
+            result += partword;
         }
     }
 }
 
-document.getElementById('hint').innerHTML = result
+document.getElementById("hint").innerHTML = result
+// console.log(result);
 
 /* promts
 我想要一个这样的功能，你可以帮我通过 JavaScript 实现吗？是要将原始文本进行处理，得到处理文本，目标如下。
