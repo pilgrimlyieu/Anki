@@ -4,47 +4,49 @@
 // var words = word.split(" ")
 // var result = ""
 
-var hiddenWords = ["?", "in", "of", "from", "at", "on", "through", "via", "before", "after", "until", "to", "down", "up", "off", "away", "into", "onto", "upon", "out", "with", "without", "within", "by", "for", "since", "toward", "towards", "forward", "forwards", "above", "below", "beyond", "again", "about", "under", "beneath", "during", "around", "than", "over", "beside", "behind", "as", "and", "or", "though", "but", "not", "nor", "either", "neither", "yet", "both", "so", "such", "that", "which", "when", "how", "what", "a", "an", "the", "this", "that", "if", "no", "most", "one", "one's", "oneself", "do", "does", "doing", "did", "done", "be", "is", "are", "was", "were", "been", "many", "much", "can", "can't", "sb.'s", "sb's", "back", "there", "there's", "it", "it's", "other", "else", "among", "against", "things", "ever", "something", "everything", "anything", "i", "me", "my", "we", "us", "our", "you", "your", "he", "him", "his", "she", "her", "they", "them", "their", "whether", "whose", "very", "other", "others", "another", "upside", "should", "only", "ahead", "throughout", "once", "all", "b"]
-var preservedWords = ["sth", "sb", "sp"]
-var underline = "__";
-var partword = "";
-var instruction = word[0];
+function auto_spell(word) {
+    let hiddenWords = ["?", "in", "of", "from", "at", "on", "through", "via", "before", "after", "until", "to", "down", "up", "off", "away", "into", "onto", "upon", "out", "with", "without", "within", "by", "for", "since", "toward", "towards", "forward", "forwards", "above", "below", "beyond", "again", "about", "under", "beneath", "during", "around", "than", "over", "beside", "behind", "as", "and", "or", "though", "but", "not", "nor", "either", "neither", "yet", "both", "so", "such", "that", "which", "when", "how", "what", "a", "an", "the", "this", "that", "if", "no", "most", "one", "one's", "oneself", "do", "does", "doing", "did", "done", "be", "is", "are", "was", "were", "been", "many", "much", "can", "can't", "sb's", "back", "there", "there's", "it", "it's", "other", "else", "among", "against", "things", "ever", "something", "everything", "anything", "i", "me", "my", "we", "us", "our", "you", "your", "he", "him", "his", "she", "her", "they", "them", "their", "whether", "whose", "very", "other", "others", "another", "upside", "should", "only", "ahead", "throughout", "once", "all", "b", "still", "what's", "aside", "some", "each"]
+    let preservedWords = ["sth", "sb", "sp", "br"]
+    let underline = "__";
+    let partword = "";
+    let instruction = word[0];
+    let result = ""
 
-if ([":", "-", "!", "#"].includes(instruction)) {
-    word = word.slice(1)
-} else {
-    instruction = null
-}
+    if ([":", "-", "!", "#"].includes(instruction)) {
+        word = word.slice(1)
+    } else {
+        instruction = null
+    }
 
-if (instruction === "#") {
-    result = underline.repeat(2);
-} else if (instruction === ":") {
-    let params = word.split("_")
-    for (const order in params) {
-        const param = params[order]
-        if (order % 2) {
-            result += param ? underline : ""
-        } else {
-            result += param
+    if (instruction === "#") {
+        return underline.repeat(2);
+    } else if (instruction === ":") {
+        let params = word.split("_")
+        for (const order in params) {
+            const param = params[order]
+            if (order % 2) {
+                result += param ? underline : ""
+            } else {
+                result += param
+            }
         }
+        return result
+    } else if (instruction === "-") {
+        let params = word.split(" ")
+        for (const order in params) {
+            result += underline + " "
+        }
+        return result
+    } else if (instruction === "!") {
+        hiddenWords = []
+        preservedWords = []
     }
-} else if (instruction === "-") {
-    let params = word.split(" ")
-    for (const order in params) {
-        result += underline + " "
-    }
-} else if (instruction === "!") {
-    let params = word.split(" ")
-    for (const order in params) {
-        result += params[order][0] + underline + " "
-    }
-} else {
+
     for (let i = 0; i < word.length; i++) {
         let char = word[i];
         if (/[-\w'?]/.test(char)) {
             partword += char;
         } else {
-            // if (partword) {
             if (hiddenWords.includes(partword.toLowerCase())) {
                 result += underline;
             } else if (preservedWords.includes(partword)) {
@@ -55,7 +57,6 @@ if (instruction === "#") {
                 result += partword;
             }
             partword = "";
-            // }
             result += char;
         }
     }
@@ -70,9 +71,10 @@ if (instruction === "#") {
             result += partword;
         }
     }
+    return result
 }
 
-document.getElementById("hint").innerHTML = result
+document.getElementById("hint").innerHTML = auto_spell(word)
 // console.log(result);
 
 /* promts

@@ -25,6 +25,11 @@
     line-height: 36px;
 }
 
+#example {
+    font-size: 18px;
+    line-height: 1.2em;
+}
+
 /* input { */
 /*     padding: 8px 10px; */
 /*     font-size: 36px; */
