@@ -1,0 +1,57 @@
+{{#标签}}
+<div>
+    <img src="_anki.png" height="32" align="left" />
+    <img src="_space.png" width="10" align="left" />
+</div>
+
+<div class="reason">
+    {{标签}}
+</div>
+
+<br />
+{{/标签}}
+
+<div class="border1">
+    <div class="h1 xcolor xleft">
+        <span class="ximg"> <img src="_space.png" height="24" width="36" /> </span>
+        问题
+    </div>
+
+    <div class="h2 xleft" id="front"> <pre>{{问题}}</pre> </div>
+
+    {{#答案}}
+    <div class="h2 xleft"> <hr style="width: 98%; "> </div>
+
+    <div class="h2 xleft" id="back"> <pre>{{答案}}</pre> </div>
+    {{/答案}}
+</div>
+
+{{#笔记}}
+<br>
+
+<div class="border2">
+    <div class="h1 ycolor yleft">
+        <span class="yimg"> <img src="_space.png" height="24" width="36" /> </span>
+        笔记
+    </div>
+
+    <div class="h2  yleft" id="extra1"><pre>{{笔记}}</pre></div>
+</div>
+{{/笔记}}
+
+{{#相关知识}}
+<br>
+
+<div class="border3">
+    <div class="h1 zcolor zleft">
+        <span class="zimg"> <img src="_space.png" height="24" width="36" /> </span>
+        相关知识
+    </div>
+
+    <div class="h2 zleft" id="extra2"> <pre>{{相关知识}}</pre> </div>
+</div>
+{{/相关知识}}
+
+<div class="transparent_deck">{{Deck}}</div>
+
+<script src="_Markdown-KaTeX.js"></script>
