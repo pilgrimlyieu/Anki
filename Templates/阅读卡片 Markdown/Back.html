@@ -11,51 +11,38 @@
 <br />
 {{/标签}}
 
-<div class="border1">
+<div class="border3">
     <div class="h1 xcolor xleft">
         <span class="ximg"><img src="_space.png" height="24" width="36" /></span>
-            问题
+        资料
     </div>
 
-    <div class="h2 xleft">
-        {{cloze:问题}}
-    </div>
-
-    {{#答案}}
-    <div class="h2 xleft">
-        <hr />
-        {{答案}}
-    </div>
-    {{/答案}}
+    <div class="h2 xleft" id="front"><pre>{{资料}}</pre></div>
 </div>
 
 {{#笔记}}
 <br />
 
-<div class="border2">
+<div class="border1">
     <div class="h1 ycolor yleft">
         <span class="yimg"><img src="_space.png" height="24" width="36" /></span>
         笔记
     </div>
 
-    <div class="h2 yleft">
-        {{笔记}}
-    </div>
+    <div class="h2  yleft" id="back"><pre>{{笔记}}</pre></div>
 </div>
 {{/笔记}}
 
 {{#相关知识}}
 <br />
 
-<div class="border3">
+<div class="border2">
     <div class="h1 zcolor zleft">
-    <span class="zimg"><img src="_space.png" height="24" width="36" /></span>
+        <span class="zimg"><img src="_space.png" height="24" width="36" /></span>
         相关知识
     </div>
 
-    <div class="h2 zleft">
-        {{相关知识}}
-    </div>
+    <div class="h2 zleft" id="extra"><pre>{{相关知识}}</pre></div>
 </div>
 {{/相关知识}}
 
@@ -63,4 +50,4 @@
     {{Deck}}
 </div>
 
-<script src="_MathJax.js"></script>
+<script src="_Markdown-KaTeX.js"></script>
