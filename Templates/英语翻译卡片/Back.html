@@ -16,11 +16,11 @@
     </button>
 
     <div class="xcolor" style="font-size: 24px">
-        <span class="ximg"><img src="_space.png" height="24" width="24" /></span>
+        <span class="ximg"><img src="_space.png" height="24" width="36" /></span>
         Word
     </div>
 
-    <div class="word" style="font-size: 48px; font-weight: bold; ">
+    <div id="hint" class="word" style="font-size: 48px; font-weight: bold; ">
         {{单词}}
     </div>
 </div>
@@ -30,7 +30,7 @@
 {{#释义}}
 <div class="border2">
     <div class="ycolor" style="font-size: 24px">
-        <span class="yimg"><img src="_space.png" height="24" width="24" /></span>
+        <span class="yimg"><img src="_space.png" height="24" width="36" /></span>
         Definition
     </div>
 
@@ -40,29 +40,27 @@
 </div>
 
 <br />
-
 {{/释义}}
 
 {{#例句}}
 <div class="border4">
     <div class="xcolor" style="font-size: 24px; ">
-        <span class="ximg"><img src="_space.png" height="24" width="24" /></span>
+        <span class="ximg"><img src="_space.png" height="24" width="36" /></span>
         Example
     </div>
 
-    <div id="example" style="font-size: 18px; line-height: 1.2em; ">
+    <div id="example" style="font-size: 20px; line-height: 1.2em; ">
         {{例句}}
     </div>
 </div>
 
 <br />
-
 {{/例句}}
 
 {{#笔记}}
 <div class="border3">
     <div class="zcolor" style="font-size: 24px">
-        <span class="zimg"><img src="_space.png" height="24" width="24" /></span>
+        <span class="zimg"><img src="_space.png" height="24" width="36" /></span>
         Notes
     </div>
 
@@ -74,6 +72,14 @@
 
 <script>
     var word = "{{单词}}";
+
+    function addLineNumber(element) {
+        let text = element.innerHTML;
+        let lines = text.split("<br>");
+        let numberedLines = lines.map((line, index) => `${index + 1}. ${line}`);
+        element.innerHTML = numberedLines.join("<br>");
+    }
+    addLineNumber(document.getElementById("example"));
 </script>
 
 <script src="_Spell-Back.js"></script>

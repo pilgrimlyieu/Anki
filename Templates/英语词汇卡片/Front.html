@@ -20,20 +20,20 @@
         Word
     </div>
 
-    <div class="word" style="font-size: 48px; font-weight: bold; ">{{单词}}</div>
+    <div id="hint" class="word" style="font-size: 48px; font-weight: bold; ">{{单词}}</div>
 </div>
 
 {{#释义}}
 <br />
 
 <div class="border2">
-    <div class="ycolor" style="font-size: 24px">
+    <div class="ycolor" style="font-size: 24px; ">
         <span class="yimg"><img src="_space.png" height="24" width="36" /></span>
         Definition
     </div>
 
     <div class="explain" style="font-size: 32px; font-family: timesi, syht; ">
-        {{#词性}}{{词性}}. {{/词性}}{{释义}}
+        {{#词性}}{{词性}}. {{/词性}}<span id="partofspeech"></span>
     </div>
 </div>
 {{/释义}}
@@ -61,17 +61,18 @@
 {{/例句}}
 
 <script>
+    var word = "{{单词}}";
     document.getElementById("partofspeech").innerHTML = (("{{词性}}") ? "<br>" : "") + "{{释义}}".match(/[a-z\/&.]+\./g).join("<br>")
 </script>
 
 <script>
     function addLineNumber(element) {
         let text = element.innerHTML;
-        let lines = text.split('<br>');
+        let lines = text.split("<br>");
         let numberedLines = lines.map((line, index) => `${index + 1}. ${line}`);
-        element.innerHTML = numberedLines.join('<br>');
+        element.innerHTML = numberedLines.join("<br>");
     }
-    addLineNumber(document.getElementById('example'));
+    addLineNumber(document.getElementById("example"));
 </script>
 
 <script>
@@ -81,3 +82,5 @@
         document.getElementById("android").style.display = "none"
     }
 </script>
+
+<script src="_Spell-Back.js"></script>

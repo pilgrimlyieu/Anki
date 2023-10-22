@@ -20,7 +20,7 @@
         Word
     </div>
 
-    <div class="word" style="font-size: 48px; font-weight: bold; ">
+    <div id="hint" class="word" style="font-size: 48px; font-weight: bold; ">
         {{单词}}
     </div>
 </div>
@@ -29,7 +29,7 @@
 <br />
 
 <div class="border2">
-    <div class="ycolor" style="font-size: 24px">
+    <div class="ycolor" style="font-size: 24px; ">
         <span class="yimg"><img src="_space.png" height="24" width="36" /></span>
         Definition
     </div>
@@ -42,14 +42,13 @@
 
 {{#例句}}
 <br />
-
 <div class="border4">
     <div class="xcolor" style="font-size: 24px; ">
         <span class="ximg"><img src="_space.png" height="24" width="36" /></span>
         Example
     </div>
 
-    <div id="example" style="font-size: 18px; line-height: 1.2em; ">
+    <div id="example">
         {{例句}}
     </div>
 </div>
@@ -64,11 +63,15 @@
         Notes
     </div>
 
-    <div style="font-size: 28px; ">{{笔记}}</div>
+    <div style="font-size: 28px; ">
+        {{笔记}}
+    </div>
 </div>
 {{/笔记}}
 
 <script>
+    var word = "{{单词}}";
+
     function addLineNumber(element) {
         let text = element.innerHTML;
         let lines = text.split("<br>");
@@ -77,6 +80,8 @@
     }
     addLineNumber(document.getElementById("example"));
 </script>
+
+<script src="_Spell-Back.js"></script>
 
 <script>
     if (navigator.userAgent.match(/(Android)/i)) {
