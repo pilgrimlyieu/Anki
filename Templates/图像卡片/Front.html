@@ -1,0 +1,58 @@
+{{#标签}}
+<div>
+    <img src="_anki.png" height="32" align="left" />
+    <img src="_space.png" width="10" align="left" />
+</div>
+
+<div class="reason">
+    {{标签}}
+</div>
+
+{{/标签}}
+
+{{#图像}}
+{{^标题}}
+<br />
+{{/标题}}
+
+{{#标题}}
+<div id="io-header">
+    {{标题}}
+</div>
+{{/标题}}
+
+<div class="border1">
+    <div class="h1 xcolor xleft">
+        <span class="ximg"><img src="_space.png" height="24" width="36" /></span>
+            问题
+    </div>
+
+    <div id="io-wrapper">
+        <div id="io-overlay" class="h2 xleft">{{问题遮盖}}</div>
+        <div id="io-original" class="h2 xleft">{{图像}}</div>
+    </div>
+
+    <div class="h2 xleft" id="front"><pre>{{问题}}</pre></div>
+
+    <script>
+        // Prevent original image from loading before mask
+        aFade = 50, qFade = 0;
+        var mask = document.querySelector("#io-overlay>img");
+        function loaded() {
+            var original = document.querySelector("#io-original");
+            original.style.visibility = "visible";
+        }
+        if (mask === null || mask.complete) {
+            loaded();
+        } else {
+            mask.addEventListener("load", loaded);
+        }
+    </script>
+</div>
+{{/图像}}
+
+<div class="transparent_deck">
+    {{Deck}}
+</div>
+
+<script src="_Markdown-KaTeX.js"></script>
