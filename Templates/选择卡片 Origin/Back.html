@@ -1,0 +1,46 @@
+<script src="_Choice-Head.js"></script>
+
+{{#标签}}
+<div>
+    <img src="_anki.png" height="32" align="left" />
+    <img src="_space.png" width="10" align="left" />
+</div>
+
+<div class="reason">
+    {{标签}}
+</div>
+
+<br />
+{{/标签}}
+
+<div class="wrap-container">
+    <div class="body">
+        <div class="question">
+            1.<span id="questionType" class="question-type"></span>{{cloze:问题}}
+        </div>
+
+        <div class="options" id="back-options">
+            <li class="option"></li>
+            <li class="option"></li>
+        </div>
+        <div id="back-tag"></div>
+    </div>
+
+    <hr />
+
+    <script>
+        var OPTION = "{{选项}}";
+        var ANSWER = "{{答案}}";
+        var TAGS   = "{{Tags}}";
+    </script>
+
+    <script src="_Choice-Back.js"></script>
+
+    <div id="tips" class="tips"></div>
+</div>
+
+<div id="notes-wrapper"></div>
+
+<div class="notes-container"> {{解析}} </div>
+
+<script src="_MathJax.js"></script>

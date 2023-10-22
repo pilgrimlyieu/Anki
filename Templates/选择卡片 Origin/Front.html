@@ -1,0 +1,39 @@
+<script src="_Choice-Head.js"></script>
+
+{{#标签}}
+<div>
+    <img src="_anki.png" height="32" align="left" />
+    <img src="_space.png" width="10" align="left" />
+</div>
+
+<div class="reason">
+    {{标签}}
+</div>
+
+<br />
+{{/标签}}
+
+<div class="wrap-container">
+    <div class="body">
+        <div class="question">
+            1.<span id="questionType" class="question-type"></span>{{cloze:问题}}
+        </div>
+
+        <div class="options" id="front-options"></div>
+        <div id="front-tag"></div>
+    </div>
+</div>
+
+<div id="settingsModal" class="modal"></div>
+
+<script>
+var OPTION = "{{选项}}";
+var ANSWER = "{{答案}}";
+var TAGS   = "{{Tags}}";
+</script>
+
+<script src="_Choice-Front.js"></script>
+
+<script src="_Cloze.js"></script>
+
+<script src="_MathJax.js"></script>
