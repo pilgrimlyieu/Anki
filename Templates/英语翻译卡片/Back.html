@@ -1,5 +1,5 @@
 <div class="border1">
-    <button id="desktop" class="button" onclick="window.open('goldendict://{{单词}}', '_blank')">
+    <button id="desktop" class="button" onclick="window.open('goldendict://{{单词}}', '_blank')" accesskey="s">
         <div style="font-size: 12px; font-weight: bold; ">Dict</div>
         <i class="fa fa-book"></i>
     </button>
@@ -11,7 +11,7 @@
     <button class="button" onclick="document.getElementById('audio').play()">
         <div style="font-weight: bold; font-size: 12px; ">Pron</div>
         <i class="fa fa-play">
-            <audio id="audio" src="https://dict.youdao.com/dictvoice?audio={{单词}}&type=2" autoplay></audio>
+            <audio id="audio" src="https://dict.youdao.com/dictvoice?audio={{单词}}&type=2" autoplay accesskey="a"></audio>
         </i>
     </button>
 
