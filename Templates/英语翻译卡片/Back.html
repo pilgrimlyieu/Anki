@@ -34,9 +34,7 @@
         Definition
     </div>
 
-    <div class="explain" style="font-size: 32px; font-family: timesi, syht; ">
-        {{#词性}}{{词性}}. {{/词性}}{{释义}}
-    </div>
+    <div id="definition" class="explain" style="font-size: 32px; "></div>
 </div>
 
 <br />
@@ -72,6 +70,9 @@
 
 <script>
     var word = "{{单词}}";
+    var definition = "{{#词性}}{{词性}}. {{/词性}}{{释义}}"
+    formattedDefinition = definition.replace("<br>", "\n").replace(/(^(?:[a-z]+\.\/)*[a-z]+\.)/gm, '<i>$1</i>');
+    document.getElementById("definition").innerHTML = formattedDefinition.replace("\n", "<br>");
 
     function addLineNumber(element) {
         let text = element.innerHTML;
