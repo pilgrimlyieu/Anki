@@ -1,8 +1,9 @@
 var getResources = [
-    getCSS("_katex.css", "https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"),
-    getScript("_katex.js", "https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js"),
-    getScript("_markdown-it.min.js", "https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"),
-    getScript("_markdown-it-mark.js", "https://github.com/markdown-it/markdown-it-mark/blob/master/dist/markdown-it-mark.js"),
+    getCSS("_katex.css", "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"),
+    getScript("_katex.js", "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"),
+    getScript("_markdown-it.min.js", "https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"),
+    getScript("_markdown-it-mark.js", "https://cdn.jsdelivr.net/npm/markdown-it-mark@4.0.0/dist/markdown-it-mark.min.js"),
+    getScript("_markdown-it-footnote.js", "https://cdn.jsdelivr.net/npm/markdown-it-footnote@4.0.0/dist/markdown-it-footnote.js"),
     getScript("_auto-render.js", "https://cdn.jsdelivr.net/gh/Jwrede/Anki-KaTeX-Markdown/auto-render-cdn.js"),
     // getCSS("_highlight.css", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark-reasonable.min.css"),
     // getScript("_highlight.js", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"),
@@ -156,7 +157,7 @@ function markdown(ID) {
     //     }
     //     return ''; // use external default escaping
     // }}).use(markdownItMark);
-    let md = new markdownit({typographer: true, html: true}).use(markdownItMark);
+    let md = new markdownit({typographer: true, html: true}).use(markdownitMark).use(markdownitFootnote);
     let text = replaceHTMLElementsInString(document.getElementById(ID).innerHTML);
     text = md.render(text);
     document.getElementById(ID).innerHTML = text.replace(/&lt;\/span&gt;/gi, "\\");
