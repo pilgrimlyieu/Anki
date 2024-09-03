@@ -14,7 +14,13 @@
 
 .card {
     font: 16px times, syht;
-    background-color: #ffffff;
+    color: #0f0f0f;
+    background-size: 100%;
+}
+
+.card.nightMode {
+    font: 16px times, syht;
+    color: #f0f0f0;
     background-size: 100%;
 }
 
@@ -80,22 +86,34 @@
     border-radius: 20px;
 }
 .border1 {
-    background: #393733;
+    background: #f2ebe0;
 }
 .border2 {
-    background: #314a43;
+    background: #d9f2eb;
 }
 .border3 {
-    background: #3e3841;
+    background: #f0e6f6;
 }
 .border4 {
+    background: #dbf0ff;
+}
+.nightMode .border1 {
+    background: #393733;
+}
+.nightMode .border2 {
+    background: #314a43;
+}
+.nightMode .border3 {
+    background: #3e3841;
+}
+.nightMode .border4 {
     background: #495c69;
 }
 
 /* Classes */
 
 .section {
-    background: repeating-linear-gradient(135deg, #4B5362 0px, transparent 5px);
+    background: repeating-linear-gradient(135deg, #4b5362 0px, transparent 5px);
     height: 6px;
     width: 99%;
 }
@@ -107,6 +125,22 @@
 }
 
 .reason {
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;
+    background-color: #dbedff;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px 10px;
+    margin-right: 0.2em;
+    text-align: left;
+    height: 20px;
+    border-radius: 5px;
+    text-overflow: ellipsis;
+    user-select: none;
+}
+
+.nightMode .reason {
     font-size: 18px;
     line-height: 20px;
     color: #ffffff;
@@ -126,11 +160,23 @@
 
 u {
     text-decoration: none;
+    color: rgb(104, 118, 78);
+    background: linear-gradient(rgb(233, 255, 205), rgb(233, 255, 205)) 0 75% / 100% 12px no-repeat;
+}
+
+.nightMode u {
+    text-decoration: none;
     color: rgb(218, 247, 166);
-    background: linear-gradient(rgba(74, 114, 92, 1), rgba(74, 114, 92, 1)) 0 75% / 100% 12px no-repeat;
+    background: linear-gradient(rgb(74, 114, 92), rgb(74, 114, 92)) 0 75% / 100% 12px no-repeat;
 }
 
 mark {
+    text-decoration: none;
+    color: rgb(204, 147, 0);
+    background: linear-gradient(rgb(255, 208, 200), rgb(255, 208, 200)) 0 75% / 100% 12px no-repeat;
+}
+
+.nightMode mark {
     text-decoration: none;
     color: rgb(255, 185, 0);
     background: linear-gradient(rgb(149, 2, 47), rgb(149, 2, 47)) 0 75% / 100% 12px no-repeat;
@@ -142,8 +188,16 @@ b {
 }
 
 hr {
-    background-color: hsl(220, 13%, 34%);
-    vertical-align: middle;
+    background-color: #a5adbc;
+    margin: -2px -2px 0px -3px;
+    width: 100%;
+    height: 3px;
+    border: 0 none;
+    display: block;
+}
+
+.nightMode hr {
+    background-color: #4b5362;
     margin: -2px -2px 0px -3px;
     width: 100%;
     height: 3px;

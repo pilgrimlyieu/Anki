@@ -1,6 +1,21 @@
 @import url("fontawesome-free-5.15.4-web/css/all.css");
 
 .button {
+    color: #8b8b8b;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-top: -12px;
+    background-color: var(--button-bg-color);
+    height: 36px;
+    width: 28px;
+    border: none;
+    border-radius: 2px;
+    float: right;
+    cursor: pointer;
+}
+
+.nightMode .button {
     color: #ffffff;
     text-align: center;
     text-decoration: none;

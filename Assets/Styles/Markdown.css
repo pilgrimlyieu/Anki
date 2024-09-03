@@ -5,63 +5,71 @@
     margin-bottom: -0.8em;
 }
 
-html body hr {
+hr {
     margin: -2px 2px 0px 0px;
-    width: 100%;
 }
 
-html body table {
+table {
     margin: 15px 0 15px 0;
     border-collapse: collapse;
     border-spacing: 0;
     overflow: auto;
     word-break: normal;
-    background-color: hsl(220, 13%, 18%);
+    background-color: #e8eefa;
     width: 100%;
 }
 
-html body table th {
+.nightMode table {
+    margin: 15px 0 15px 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    overflow: auto;
+    word-break: normal;
+    background-color: #272b33;
+    width: 100%;
+}
+
+table th {
     font-weight: bold;
-    color: hsl(0, 0%, 100%);
 }
 
-html body table td,
-html body table th {
+table td,
+table th {
     padding: 6px 13px;
-    border: 1px solid hsl(220, 13%, 34%);
+    border: 1px solid #c8d3eb;
 }
 
-html body hr {
-    background-color: hsl(220, 13%, 34%);
-    height: 3px;
-    border: 0 none;
+.nightMode table td,
+.nightMode table th {
+    padding: 6px 13px;
+    border: 1px solid #4b5261;
 }
 
-html body code {
+code {
     font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     font-size: .85em !important;
-    color: hsl(0, 0%, 100%);
-    background-color: hsl(220, 13%, 26%);
+    color: #ffffff;
+    background-color: #393f4a;
     padding: 0.2em 0;
     border-radius: 3px;
 }
 
-html body code::before,
-html body code::after {
+code::before,
+code::after {
     letter-spacing: -0.2em;
     content: "\00a0";
 }
 
-html body kbd {
-    color: hsl(0, 0%, 100%);
+kbd {
+    color: #ffffff;
     padding: 2px 4px;
-    background-color: hsl(220, 13%, 26%);
-    border: 1px solid hsl(220, 13%, 34%);
-    border-bottom: 2px solid hsl(220, 13%, 28%);
+    background-color: #393f4a;
+    border: 1px solid #4b5261;
+    border-bottom: 2px solid #3e4450;
     border-radius: 3px;
 }
 
-html body pre>code {
+pre>code {
     padding: 0;
     margin: 0;
     font-size: .85em !important;
@@ -71,7 +79,7 @@ html body pre>code {
     border: 0;
 }
 
-html body pre {
+pre {
     font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     overflow: auto;
     font-size: 1em !important;
@@ -88,23 +96,32 @@ html body pre {
     hyphens: none;
     color: #F8F8F2;
     background-color: #323232 !important;
-    border: hsl(220, 13%, 34%);
+    border: #4b5261;
     border-radius: 3px direction: ltr;
 }
 
-html body blockquote {
+blockquote {
     margin: 16px 0;
     font-size: inherit;
     padding: 0 15px;
-    color: hsl(220, 14%, 55%);
-    background-color: hsl(220, 13%, 26%);
-    border-left: 4px solid hsl(220, 13%, 34%)
+    color: #475574;
+    background-color: #e1eaff;
+    border-left: 4px solid #c8d3eb
 }
 
-html body blockquote>:first-child {
+.nightMode blockquote {
+    margin: 16px 0;
+    font-size: inherit;
+    padding: 0 15px;
+    color: #7c869c;
+    background-color: #393f4a;
+    border-left: 4px solid #4b5261
+}
+
+blockquote>:first-child {
     margin-top: 0
 }
 
-html body blockquote>:last-child {
+blockquote>:last-child {
     margin-bottom: 0
 }
