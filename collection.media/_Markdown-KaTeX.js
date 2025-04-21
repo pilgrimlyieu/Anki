@@ -114,17 +114,17 @@ function renderMath(ID) {
       "\\nl": "\\nless",//不小于
       "\\ng": "\\ngtr",//不大于
       //4 关系符
-      // "\\par": "\\mathrel{/\\kern-5mu/}",//平行
-      // "\\npar": "\\mathrel{/\\kern-13mu\\smallsetminus\\kern-13mu/}",//不平行
-      // "\\nimplies": "\\mathrel{\\kern13mu\\not\\kern-13mu\\implies}",//无法推出
-      // "\\nimpliedby": "\\mathrel{\\kern13mu\\not\\kern-13mu\\impliedby}",//无法被推出
-      // "\\niff": "\\mathrel{\\kern13mu\\not\\kern-13mu\\iff}",//不等价
+      "\\par": "\\mathrel{/\\kern-5mu/}",//平行
+      "\\npar": "\\mathrel{/\\kern-13mu\\smallsetminus\\kern-13mu/}",//不平行
+      "\\nimplies": "\\mathrel{\\kern13mu\\not\\kern-13mu\\implies}",//无法推出
+      "\\nimpliedby": "\\mathrel{\\kern13mu\\not\\kern-13mu\\impliedby}",//无法被推出
+      "\\niff": "\\mathrel{\\kern13mu\\not\\kern-13mu\\iff}",//不等价
       // 若不可用则使用下列宏
-      "\\par": "/\\kern-5mu/",//平行
-      "\\npar": "/\\kern-13mu\\smallsetminus\\kern-13mu/",//不平行
-      "\\nimplies": "\\kern13mu\\not\\kern-13mu\\implies",//无法推出
-      "\\nimpliedby": "\\kern13mu\\not\\kern-13mu\\impliedby",//无法被推出
-      "\\niff": "\\kern13mu\\not\\kern-13mu\\iff",//不等价
+      // "\\par": "/\\kern-5mu/",//平行
+      // "\\npar": "/\\kern-13mu\\smallsetminus\\kern-13mu/",//不平行
+      // "\\nimplies": "\\kern13mu\\not\\kern-13mu\\implies",//无法推出
+      // "\\nimpliedby": "\\kern13mu\\not\\kern-13mu\\impliedby",//无法被推出
+      // "\\niff": "\\kern13mu\\not\\kern-13mu\\iff",//不等价
       //5 函数
       "\\arccot": "\\operatorname{arccot}",//反余切函数
       "\\arsinh": "\\operatorname{arsinh}",//反双曲正弦函数
@@ -135,14 +135,22 @@ function renderMath(ID) {
       "\\ssd": "{\\mathrm{\\degree\\kern-0.2em C}}",//摄氏度
       "\\hsd": "{\\mathrm{\\degree\\kern-0.2em F}}",//华氏度
       //7 旧项（如有依赖则取消注释）
-      "\\env": "\\begin{#1}#2\\end{#1}",//环境
-      "\\envo": "\\begin{#1}{#2}#3\\end{#1}",//环境+选项
+      // "\\env": "\\begin{#1}#2\\end{#1}",//环境
+      // "\\envo": "\\begin{#1}{#2}#3\\end{#1}",//环境+选项
       // "\\pe": "\\kern-0.023em\\boxed{\\uparrow\\downarrow}\\kern-0.023em",//电子对
       // "\\npe": "\\kern-0.023em\\boxed{\\uparrow\\uparrow}\\kern-0.023em",//错误电子对
       // "\\nnpe": "\\kern-0.023em\\boxed{\\downarrow\\downarrow}\\kern-0.023em",//错误电子对
       // "\\se": "\\kern-0.023em\\boxed{\\kern0.25em\\uparrow\\kern0.25em}\\kern-0.023em",//单电子
       // "\\nse": "\\kern-0.023em\\boxed{\\kern0.25em\\downarrow\\kern0.25em}\\kern-0.023em",//单电子
       // "\\oe": "\\kern-0.023em\\boxed{\\kern0.25em\\phantom\\uparrow\\kern0.25em}\\kern-0.023em",//空电子
+      // 8 公式引用
+      "\\eqref": "\\href{##label-#1}{(\\text{#1})}",
+      "\\ref": "\\href{##label-#1}{\\text{#1}}",
+      "\\label": "\\htmlId{label-#1}{}",
+      "\\@eqref": "\\href{##label-#1}{(\\text{#2})}",
+      "\\@ref": "\\href{##label-#1}{\\text{#2}}",
+      "\\@label": "\\htmlId{label-#1}{\\tag{#2}}",
+      "\\@@label": "\\htmlId{label-#1}{\\tag*{#2}}",
         },
         throwOnError: false
     });
