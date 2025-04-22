@@ -45,19 +45,17 @@ table th {
     border: 1px solid #4b5261;
 }
 
+pre {
+    border-radius: 5px;
+}
+
 code {
     font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     font-size: .85em !important;
     color: #ffffff;
     background-color: #393f4a;
-    padding: 0.2em 0;
+    padding: 0.2em;
     border-radius: 3px;
-}
-
-code::before,
-code::after {
-    letter-spacing: -0.2em;
-    content: "\00a0";
 }
 
 kbd {
@@ -71,7 +69,7 @@ kbd {
 
 pre>code {
     padding: 0;
-    margin: 0;
+    /* margin: 0; */
     font-size: .85em !important;
     word-break: normal;
     white-space: pre;
@@ -90,7 +88,8 @@ pre {
     word-break: normal;
     word-wrap: normal;
     padding: 1em;
-    margin: 0em 0;
+    /* margin: 0em 0; */
+    margin-right: 0.5em;
     overflow: auto;
     tab-size: 4;
     hyphens: none;
