@@ -25,10 +25,47 @@
 }
 
 .cloze {
-    color: #ec6c4f;
-    font-weight: bold;
-    padding-bottom: 0px;
-    text-decoration: underline;
+    font-weight: 500;
+    color: #0066cc;
+    background: linear-gradient(rgba(0, 102, 204, 0.08), rgba(0, 102, 204, 0.08)) 0 75% / 100% 12px no-repeat;
+    border-radius: 3px;
+    padding: 0 2px;
+}
+
+.nightMode .cloze {
+    color: #6bb9ff;
+    background: linear-gradient(rgba(107, 185, 255, 0.15), rgba(107, 185, 255, 0.15)) 0 75% / 100% 12px no-repeat;
+}
+
+.cloze-inactive {
+    font-weight: 450;
+    color: inherit;
+    background: linear-gradient(rgba(0, 102, 204, 0.04), rgba(0, 102, 204, 0.04)) 0 75% / 100% 8px no-repeat;
+    border-radius: 2px;
+    padding: 0 1px;
+}
+
+.nightMode .cloze-inactive {
+    background: linear-gradient(rgba(107, 185, 255, 0.08), rgba(107, 185, 255, 0.08)) 0 75% / 100% 8px no-repeat;
+}
+
+pre .cloze, code .cloze {
+    font-weight: normal;
+    color: inherit;
+    background-color: rgba(255, 255, 0, 0.2);
+    border: none;
+    padding: 0 2px;
+}
+
+.cloze:hover {
+    background-color: rgba(0, 102, 204, 0.15);
+}
+
+pre .cloze-inactive, 
+code .cloze-inactive {
+    font-weight: normal;
+    background: none;
+    padding: 0;
 }
 
 .h1 {
