@@ -1,11 +1,14 @@
 /**
+ * @version 1.0.0
+ * @author PilgrimLyieu
+ * @email pilgrimlyieu@outlook.com
+ * @github https://github.com/pilgrimlyieu/Anki/blob/main/collection.media/_Anki-Markdown.js
+ * @license MIT
+ *
  * @fileoverview Anki Markdown + KaTeX Renderer.
  * Loads necessary resources (local first, CDN fallback) and renders specified fields.
  * Handles NESTED Cloze within KaTeX using DOM-based placeholders.
  * Place this file and all local resources (files starting with '_') in Anki's `collection.media` folder.
- * @author PilgrimLyieu
- * @email pilgrimlyieu@outlook.com
- * @github https://github.com/pilgrimlyieu/Anki/blob/main/collection.media/_Anki-Markdown.js
  */
 (function () {
   "use strict";
@@ -626,15 +629,17 @@
     try {
       let content = element.innerHTML;
       let processedPlaceholders = false;
-      console.log(`Before rendering: ${content}`);
+      // console.log(`Before rendering: ${content}`);
 
       // --- 1. Preprocess Cloze (DOM method, only for specified fields) ---
+      // console.log(`Before preprocessing: ${content}`);
       if (config.clozeFieldIds?.includes(fieldId)) {
         // console.log(`Preprocessing cloze placeholders (DOM) for field "${fieldId}"...`);
         content = preprocessClozePlaceholdersDOM(content);
         processedPlaceholders = true;
       }
       element.innerHTML = content; // Update the DOM with preprocessed HTML
+      // console.log(`After preprocessing: ${element.innerHTML}`);
 
       // --- 2. Render KaTeX ---
       if (
