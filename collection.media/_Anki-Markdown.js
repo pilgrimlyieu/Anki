@@ -1,5 +1,5 @@
 /**
- * @version 1.0.0
+ * @version 1.0.1
  * @author PilgrimLyieu
  * @email pilgrimlyieu@outlook.com
  * @github https://github.com/pilgrimlyieu/Anki/blob/main/collection.media/_Anki-Markdown.js
@@ -215,7 +215,7 @@
 
     /** Mermaid options */
     mermaidOptions: {
-      theme: "dark",
+      theme: "default",
       startOnLoad: false,
     },
   };
@@ -632,14 +632,14 @@
       // console.log(`Before rendering: ${content}`);
 
       // --- 1. Preprocess Cloze (DOM method, only for specified fields) ---
-      // console.log(`Before preprocessing: ${content}`);
+      console.log(`Before preprocessing: ${content}`);
       if (config.clozeFieldIds?.includes(fieldId)) {
         // console.log(`Preprocessing cloze placeholders (DOM) for field "${fieldId}"...`);
         content = preprocessClozePlaceholdersDOM(content);
         processedPlaceholders = true;
       }
       element.innerHTML = content; // Update the DOM with preprocessed HTML
-      // console.log(`After preprocessing: ${element.innerHTML}`);
+      console.log(`After preprocessing: ${element.innerHTML}`);
 
       // --- 2. Render KaTeX ---
       if (
@@ -671,7 +671,7 @@
           );
         }
       }
-      // console.log(`After KaTeX rendering: ${element.innerHTML}`);
+      console.log(`After KaTeX rendering: ${element.innerHTML}`);
 
       // --- 3. Render Markdown ---
       if (md) {
@@ -682,7 +682,7 @@
           `Markdown-it instance not available for rendering field "${fieldId}".`
         );
       }
-      // console.log(`After Markdown rendering: ${element.innerHTML}`);
+      console.log(`After Markdown rendering: ${element.innerHTML}`);
 
       // --- 4. Restore Cloze Placeholders (string method, only if preprocessed) ---
       if (processedPlaceholders) {
@@ -690,7 +690,7 @@
         let finalHtml = element.innerHTML; // Read back potentially modified HTML
         // console.log(`Before restoring: ${finalHtml}`);
         finalHtml = restoreClozePlaceholders(finalHtml);
-        // console.log(`After restoring: ${finalHtml}`);
+        console.log(`After restoring: ${finalHtml}`);
         element.innerHTML = finalHtml; // Update the DOM with restored spans
       }
     } catch (renderError) {

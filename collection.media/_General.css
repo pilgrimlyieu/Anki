@@ -28,8 +28,8 @@
     font-weight: 500;
     color: #0066cc;
     background: linear-gradient(rgba(0, 102, 204, 0.08), rgba(0, 102, 204, 0.08)) 0 75% / 100% 12px no-repeat;
+    box-decoration-break: clone; /* Waiting Chrome 130+ */
     border-radius: 3px;
-    padding: 0 2px;
 }
 
 .nightMode .cloze {
@@ -41,8 +41,8 @@
     font-weight: 450;
     color: inherit;
     background: linear-gradient(rgba(0, 102, 204, 0.04), rgba(0, 102, 204, 0.04)) 0 75% / 100% 8px no-repeat;
+    box-decoration-break: clone; /* Waiting Chrome 130+ */
     border-radius: 2px;
-    padding: 0 1px;
 }
 
 .nightMode .cloze-inactive {
@@ -54,7 +54,6 @@ pre .cloze, code .cloze {
     color: inherit;
     background-color: rgba(255, 255, 0, 0.2);
     border: none;
-    padding: 0 2px;
 }
 
 .cloze:hover {
@@ -66,6 +65,10 @@ code .cloze-inactive {
     font-weight: normal;
     background: none;
     padding: 0;
+}
+
+p:has(> :is(span.cloze, span.cloze-inactive):empty:only-child) {
+  display: none;
 }
 
 .h1 {
@@ -254,4 +257,8 @@ img, .chrome img {
 
 li {
     margin-left: -0.5em;
+}
+
+.mermaid svg {
+    filter: invert(80%) hue-rotate(180deg) contrast(120%) brightness(120%);
 }
