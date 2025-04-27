@@ -94,7 +94,7 @@ pre {
     tab-size: 4;
     hyphens: none;
     color: #F8F8F2;
-    background-color: #323232 !important;
+    background-color: #323232;
     border: #4b5261;
     border-radius: 3px direction: ltr;
 }
@@ -123,4 +123,8 @@ blockquote>:first-child {
 
 blockquote>:last-child {
     margin-bottom: 0
+}
+
+pre.mermaid {
+    background-color: transparent !important;
 }

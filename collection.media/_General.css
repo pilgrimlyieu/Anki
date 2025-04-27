@@ -258,7 +258,3 @@ img, .chrome img {
 li {
     margin-left: -0.5em;
 }
-
-.mermaid svg {
-    filter: invert(80%) hue-rotate(180deg) contrast(120%) brightness(120%);
-}
