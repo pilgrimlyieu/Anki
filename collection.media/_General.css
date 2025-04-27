@@ -25,7 +25,6 @@
 }
 
 .cloze {
-    font-weight: 500;
     color: #0066cc;
     background: linear-gradient(rgba(0, 102, 204, 0.08), rgba(0, 102, 204, 0.08)) 0 75% / 100% 12px no-repeat;
     box-decoration-break: clone; /* Waiting Chrome 130+ */
@@ -38,7 +37,6 @@
 }
 
 .cloze-inactive {
-    font-weight: 450;
     color: inherit;
     background: linear-gradient(rgba(0, 102, 204, 0.04), rgba(0, 102, 204, 0.04)) 0 75% / 100% 8px no-repeat;
     box-decoration-break: clone; /* Waiting Chrome 130+ */
