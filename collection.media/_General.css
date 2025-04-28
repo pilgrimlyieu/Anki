@@ -65,10 +65,6 @@ code .cloze-inactive {
     padding: 0;
 }
 
-p:has(> :is(span.cloze, span.cloze-inactive):empty:only-child) {
-  display: none;
-}
-
 .h1 {
     font: 20px times, syht;
     text-align: left;

@@ -25,3 +25,21 @@
 </div>
 
 <script src="_Anki-Markdown.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const paragraphs = document.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    if (p.childNodes.length === 1) {
+      const child = p.firstChild;
+      if (
+        child.nodeType === Node.ELEMENT_NODE &&
+        child.tagName === 'SPAN' &&
+        (child.classList.contains('cloze') || child.classList.contains('cloze-inactive')) &&
+        child.childNodes.length === 0
+      ) {
+        p.style.display = 'none';
+      }
+    }
+  });
+});
+</script>
