@@ -1,8 +1,9 @@
 /**
- * @version 1.1.1
+ * @version 1.1.2
  * @author PilgrimLyieu
  * @email pilgrimlyieu@outlook.com
  * @github https://github.com/pilgrimlyieu/Anki/blob/main/collection.media/_Anki-Markdown.js
+ * @changelog https://github.com/pilgrimlyieu/Anki/issues/1#issuecomment-3409140670
  * @license MIT
  *
  * @fileoverview Anki Markdown + KaTeX Renderer.
@@ -330,6 +331,29 @@
     }
 
     /**
+     * Custom code highlighter for markdown-it.
+     * @param {string} str The code string.
+     * @param {string} lang The language name.
+     * @returns {string} The highlighted HTML string.
+     */
+    #highlightCode(str, lang) {
+      const escapeHtml = this.md.utils.escapeHtml;
+      if (lang === "mermaid") {
+        return `<pre class="mermaid">${escapeHtml(str)}</pre>`;
+      } else if (lang && hljs.getLanguage(lang)) {
+        try {
+          return (
+            '<pre class="hljs"><code>' +
+            hljs.highlight(str, { language: lang, ignoreIllegals: true })
+              .value +
+            "</code></pre>"
+          );
+        } catch (__) {}
+      }
+      return `<pre class="hljs"><code>${escapeHtml(str)}</code></pre>`;
+    }
+
+    /**
      * Initialize Markdown-it and Mermaid with options.
      */
     #initializeLibs() {
@@ -337,10 +361,17 @@
       if (typeof markdownit === "undefined")
         throw new Error("markdown-it library failed to load.");
 
-      this.md = window.markdownit(this.config.markdownOptions);
+      const mdOptions = {
+        ...this.config.markdownOptions,
+        highlight: this.#highlightCode.bind(this),
+      };
+      this.md = window.markdownit(mdOptions);
 
       // Register KaTeX plugin first if KaTeX and plugin are loaded
-      if (typeof katex !== "undefined" && typeof markdownitKatex !== "undefined") {
+      if (
+        typeof katex !== "undefined" &&
+        typeof markdownitKatex !== "undefined"
+      ) {
         this.md.use(markdownitKatex, this.config.katexOptions);
         console.log("Registered custom markdown-it-katex plugin");
       }
@@ -369,6 +400,16 @@
         } catch (e) {
           logError("Failed to initialize Mermaid", e);
         }
+      }
+
+      // Check if highlight.js is loaded
+      if (typeof hljs === "undefined") {
+        // Log error but don't reject, highlighting might be optional
+        logError(
+          "Highlight.js library not loaded. Code highlighting might not work."
+        );
+      } else {
+        console.log("Highlight.js ready.");
       }
     }
 
@@ -646,27 +687,6 @@
       breaks: true, // Convert '\n' in paragraphs into <br>
       linkify: true, // Autoconvert URL-like text to links
       typographer: true, // Enable smartypants and other typographic replacements
-      highlight: (str, lang) => {
-        if (lang && hljs.getLanguage(lang)) {
-          try {
-            return (
-              '<pre class="hljs"><code>' +
-              hljs.highlight(str, { language: lang, ignoreIllegals: true })
-                .value +
-              "</code></pre>"
-            );
-          } catch (__) {}
-        } else if (lang === "mermaid") {
-          // Handle mermaid blocks specifically for the plugin
-          const escapedStr = str;
-          return `<pre class="mermaid">${escapedStr}</pre>`;
-        }
-        // Use external default escaping
-        const escaped = md
-          ? md.utils.escapeHtml(str)
-          : str.replace(/</g, "<").replace(/>/g, ">");
-        return `<pre class="hljs"><code>${escaped}</code></pre>`;
-      },
     },
 
     /** Mermaid options */
