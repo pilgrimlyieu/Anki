@@ -19,11 +19,23 @@
    * @param {object} md - markdown-it instance
    * @param {object} options - KaTeX options
    */
-  function markdownItKatexPlugin(md, options) {
+  const markdownItKatexPlugin = (md, options) => {
     const katexOptions = options || {};
 
+    // Utility to check if a position is preceded by an odd number of backslashes
+    const hasOddNumberOfBackslashes = (src, pos) => {
+      if (pos <= 0) return false;
+      let backslashCount = 0;
+      let checkPos = pos - 1;
+      while (checkPos >= 0 && src[checkPos] === "\\") {
+        backslashCount++;
+        checkPos--;
+      }
+      return backslashCount % 2 === 1;
+    };
+
     // Parse inline math
-    function parseInlineMath(state, silent) {
+    const parseInlineMath = (state, silent) => {
       const delimiters = katexOptions.delimiters || [];
       const inlineDelims = delimiters.filter((d) => !d.display);
 
@@ -58,19 +70,9 @@
           if (foundPos === -1) break;
 
           // Check if it's escaped
-          if (foundPos > 0 && state.src[foundPos - 1] === "\\") {
-            // Count consecutive backslashes before the delimiter
-            let backslashCount = 0;
-            let checkPos = foundPos - 1;
-            while (checkPos >= 0 && state.src[checkPos] === "\\") {
-              backslashCount++;
-              checkPos--;
-            }
-            // If odd number of backslashes, the delimiter is escaped
-            if (backslashCount % 2 === 1) {
-              searchPos = foundPos + 1;
-              continue;
-            }
+          if (hasOddNumberOfBackslashes(state.src, foundPos)) {
+            searchPos = foundPos + 1;
+            continue;
           }
 
           // For single $, make sure we don't match $$ as closing
@@ -114,10 +116,10 @@
       }
 
       return false;
-    }
+    };
 
     // Parse block math
-    function parseBlockMath(state, startLine, endLine, silent) {
+    const parseBlockMath = (state, startLine, endLine, silent) => {
       const delimiters = katexOptions.delimiters || [];
       const blockDelims = delimiters.filter((d) => d.display);
 
@@ -154,17 +156,9 @@
           if (foundPos === -1 || foundPos >= state.eMarks[startLine]) break;
 
           // Check if it's escaped
-          if (foundPos > 0 && state.src[foundPos - 1] === "\\") {
-            let backslashCount = 0;
-            let checkPos = foundPos - 1;
-            while (checkPos >= 0 && state.src[checkPos] === "\\") {
-              backslashCount++;
-              checkPos--;
-            }
-            if (backslashCount % 2 === 1) {
-              searchPos = foundPos + 1;
-              continue;
-            }
+          if (hasOddNumberOfBackslashes(state.src, foundPos)) {
+            searchPos = foundPos + 1;
+            continue;
           }
 
           sameLine = foundPos;
@@ -188,17 +182,9 @@
               const foundPos = lineStart + idx;
 
               // Check if it's escaped
-              if (idx > 0 && lineText[idx - 1] === "\\") {
-                let backslashCount = 0;
-                let checkPos = idx - 1;
-                while (checkPos >= 0 && lineText[checkPos] === "\\") {
-                  backslashCount++;
-                  checkPos--;
-                }
-                if (backslashCount % 2 === 1) {
-                  searchPos = idx + 1;
-                  continue;
-                }
+              if (hasOddNumberOfBackslashes(state.src, foundPos)) {
+                searchPos = foundPos + 1;
+                continue;
               }
 
               closePos = foundPos;
@@ -227,10 +213,10 @@
       }
 
       return false;
-    }
+    };
 
     // Render inline math
-    function renderInlineMath(tokens, idx) {
+    const renderInlineMath = (tokens, idx) => {
       const content = tokens[idx].content;
       try {
         return katex.renderToString(content, {
@@ -244,10 +230,10 @@
           content
         )}</span>`;
       }
-    }
+    };
 
     // Render block math
-    function renderBlockMath(tokens, idx) {
+    const renderBlockMath = (tokens, idx) => {
       const content = tokens[idx].content;
       try {
         const rendered = katex.renderToString(content, {
@@ -262,7 +248,7 @@
           content
         )}</div>\n`;
       }
-    }
+    };
 
     // Register rules
     md.inline.ruler.before("escape", "math_inline", parseInlineMath);
@@ -273,7 +259,7 @@
     // Register renderers
     md.renderer.rules.math_inline = renderInlineMath;
     md.renderer.rules.math_block = renderBlockMath;
-  }
+  };
 
   return markdownItKatexPlugin;
 });

@@ -348,7 +348,7 @@
               .value +
             "</code></pre>"
           );
-        } catch (__) {}
+        } catch {}
       }
       return `<pre class="hljs"><code>${escapeHtml(str)}</code></pre>`;
     }
