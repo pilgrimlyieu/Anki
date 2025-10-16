@@ -1,5 +1,5 @@
 /**
- * @version 1.1.0
+ * @version 1.1.1
  * @author PilgrimLyieu
  * @email pilgrimlyieu@outlook.com
  * @github https://github.com/pilgrimlyieu/Anki/blob/main/collection.media/_Anki-Markdown.js
@@ -336,7 +336,16 @@
       // Initialize Markdown-it
       if (typeof markdownit === "undefined")
         throw new Error("markdown-it library failed to load.");
+
       this.md = window.markdownit(this.config.markdownOptions);
+
+      // Register KaTeX plugin first if KaTeX and plugin are loaded
+      if (typeof katex !== "undefined" && typeof markdownitKatex !== "undefined") {
+        this.md.use(markdownitKatex, this.config.katexOptions);
+        console.log("Registered custom markdown-it-katex plugin");
+      }
+
+      // Register other plugins
       this.config.resources.forEach((res) => {
         if (
           res.isPlugin &&
@@ -379,21 +388,12 @@
         content = this.clozeHandler.preprocess(content);
         processedPlaceholders = true;
       }
+
+      // --- 2. Render Markdown ---
+      content = this.md.render(this.#decodeHTMLEntities(content));
       element.innerHTML = content;
 
-      // --- 2. Render KaTeX ---
-      if (
-        typeof katex !== "undefined" &&
-        typeof renderMathInElement === "function"
-      ) {
-        renderMathInElement(element, this.config.katexOptions);
-      }
-
-      // --- 3. Render Markdown ---
-      content = this.md.render(this.#decodeHTMLEntities(element.innerHTML));
-      element.innerHTML = content;
-
-      // --- 4. Restore Cloze Placeholders (string method, only if preprocessed) ---
+      // --- 3. Restore Cloze Placeholders (string method, only if preprocessed) ---
       if (processedPlaceholders) {
         const finalHtml = this.clozeHandler.restore(element.innerHTML, this.md);
         element.innerHTML = finalHtml;
@@ -495,16 +495,18 @@
       },
       {
         type: "script",
-        name: "katexAutoRender",
-        local: "_auto-render.js",
-        cdn: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js",
-        dependsOn: "katex",
-      },
-      {
-        type: "script",
         name: "markdownit",
         local: "_markdown-it.min.js",
         cdn: "https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js",
+      },
+      {
+        type: "script",
+        name: "markdownitKatex",
+        pluginName: "markdownitKatex",
+        local: "_markdown-it-katex.js",
+        cdn: "SKIP",
+        isPlugin: false, // This is a core plugin with customizations
+        dependsOn: "katex",
       },
       {
         type: "script",
@@ -555,7 +557,7 @@
       },
     ],
 
-    /** KaTeX auto-render options */
+    /** KaTeX options */
     katexOptions: {
       delimiters: [
         { left: "$$", right: "$$", display: true },
