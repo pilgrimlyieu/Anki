@@ -30,6 +30,9 @@
   }
 
   class ClozeHandler {
+    /** @type {string} Placeholder for newline characters during DOM processing */
+    static NEWLINE_PLACEHOLDER = "<!--__NEWLINE__-->";
+
     constructor() {
       /** @type {object} Stores cloze data with unique indices { index: { tagName, attributes } } */
       this.data = {};
@@ -57,10 +60,12 @@
      * @returns {string} HTML with placeholders.
      */
     preprocess(htmlContent) {
+      let protectedContent = htmlContent.replace(/\r?\n/g, ClozeHandler.NEWLINE_PLACEHOLDER);
       const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = htmlContent;
+      tempDiv.innerHTML = protectedContent;
       this.#processNodeRecursive(tempDiv);
-      return tempDiv.innerHTML;
+      let processedHtml = tempDiv.innerHTML;
+      return processedHtml.replaceAll(ClozeHandler.NEWLINE_PLACEHOLDER, "\n");
     }
 
     /**
