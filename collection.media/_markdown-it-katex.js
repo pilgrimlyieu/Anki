@@ -21,6 +21,7 @@
    */
   const markdownItKatexPlugin = (md, options) => {
     const katexOptions = options || {};
+    const { preprocessMathContent, ...renderOptions } = katexOptions;
 
     // Utility to check if a position is preceded by an odd number of backslashes
     const hasOddNumberOfBackslashes = (src, pos) => {
@@ -217,27 +218,35 @@
 
     // Render inline math
     const renderInlineMath = (tokens, idx) => {
-      const content = tokens[idx].content;
+      const rawContent = tokens[idx].content;
+      const content =
+        typeof preprocessMathContent === "function"
+          ? preprocessMathContent(rawContent)
+          : rawContent;
       try {
         return katex.renderToString(content, {
-          ...katexOptions,
+          ...renderOptions,
           displayMode: false,
           throwOnError: false,
         });
       } catch (e) {
         console.error("KaTeX inline render error:", e);
         return `<span class="katex-error">${md.utils.escapeHtml(
-          content
+          rawContent
         )}</span>`;
       }
     };
 
     // Render block math
     const renderBlockMath = (tokens, idx) => {
-      const content = tokens[idx].content;
+      const rawContent = tokens[idx].content;
+      const content =
+        typeof preprocessMathContent === "function"
+          ? preprocessMathContent(rawContent)
+          : rawContent;
       try {
         const rendered = katex.renderToString(content, {
-          ...katexOptions,
+          ...renderOptions,
           displayMode: true,
           throwOnError: false,
         });
@@ -245,7 +254,7 @@
       } catch (e) {
         console.error("KaTeX block render error:", e);
         return `<div class="katex-error">${md.utils.escapeHtml(
-          content
+          rawContent
         )}</div>\n`;
       }
     };
