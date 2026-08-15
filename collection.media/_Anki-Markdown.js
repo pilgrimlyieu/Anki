@@ -1,5 +1,5 @@
 /**
- * @version 2.0.0
+ * @version 2.0.1
  * @author PilgrimLyieu
  * @email pilgrimlyieu@outlook.com
  * @github https://github.com/pilgrimlyieu/Anki/blob/main/collection.media/_Anki-Markdown.js
@@ -1240,7 +1240,7 @@
       {
         type: "css",
         name: "highlight",
-        local: "_highlight.min.css",
+        local: "_atom-one-dark-reasonable.min.css",
         cdn: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css",
       },
 
@@ -1412,6 +1412,19 @@
       startOnLoad: false,
     },
   };
+
+  const highlightCss = config.resources.find(
+    (r) => r.type === 'css' && r.name === 'highlight'
+  );
+  if (highlightCss) {
+    if (document.body.classList.contains('nightMode')) {
+      highlightCss.local = '_atom-one-dark-reasonable.min.css';
+      highlightCss.cdn = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/atom-one-dark-reasonable.min.css';
+    } else {
+      highlightCss.local = '_atom-one-light.min.css';
+      highlightCss.cdn = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/atom-one-light.min.css';
+    }
+  }
 
   if (window.__ANKI_MARKDOWN_ENABLE_TEST_HOOKS__) {
     window.__AnkiMarkdownTestHooks = {
